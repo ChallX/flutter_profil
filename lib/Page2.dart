@@ -1,21 +1,35 @@
 import 'package:flutter/material.dart';
 
 class Page2 extends StatelessWidget {
-  const Page2({Key? key}) : super(key: key);
+  // Add parameters to the constructor
+  final String name;
+  final String role;
+  final String school;
+  final String description;
+
+  // Constructor with required parameters
+  const Page2({
+    Key? key,
+    required this.name,
+    required this.role,
+    required this.school,
+    required this.description,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0, // Menghilangkan bayangan pada AppBar
-        backgroundColor: Colors.greenAccent, // Membuat AppBar transparan
+        elevation: 0, // Remove shadow from AppBar
+        backgroundColor: Colors.transparent, // Make AppBar transparent
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: Icon(Icons.arrow_back, color: Colors.black), // Back button icon color
           onPressed: () {
-            Navigator.of(context).pop(); // Kembali ke halaman sebelumnya
+            Navigator.of(context).pop(); // Go back to the previous page
           },
         ),
       ),
+      extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           // Background image
@@ -24,26 +38,28 @@ class Page2 extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                    "images/background.jpg"), // Ganti dengan path gambar Anda
-                fit: BoxFit.cover, // Agar gambar sesuai dengan ukuran layar
+                image: AssetImage("images/background.jpg"), // Background image path
+                fit: BoxFit.cover, // Fit image to cover
               ),
             ),
           ),
 
-          // Konten di atas background
+          // Content over the background
           SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Bagian gambar profil dan nama pengguna
+                // Space for the CircleAvatar
+                SizedBox(height: 80),
+
+                // Profile picture
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: AssetImage('images/me.jpg'),
+                  backgroundImage: AssetImage('images/me.jpg'), // Profile picture path
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Louis Marchall Joheart Cardoso',
+                  name, // Display the name passed from the previous page
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -52,7 +68,7 @@ class Page2 extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
 
-                // Bagian About
+                // About section
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Card(
@@ -76,7 +92,7 @@ class Page2 extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            'Perkenalkan nama saya Louis Marchall Joheart Cardoso, seorang Back-End Developer yang sedang berkembang. Saat ini saya sedang menempuh pendidikan di SMK Wikrama Bogor',
+                            'Role: $role\nSekolah: $school\nDeskripsi: $description', // Display role, school, and description
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.white,
@@ -90,41 +106,7 @@ class Page2 extends StatelessWidget {
 
                 SizedBox(height: 10),
 
-                // Bagian History
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Card(
-                    color: Colors.white,
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'History',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            'Saya menempuh pendidikan dasar di SD Mardi Waluya Cibinong. Setelah itu, saya melanjutkan ke SMP Mardi Waluya Cibinong dan masih menempuh pendidikan di SMK Wikrama Bogor. Di Wikrama, saya mengambil jurusan PPLG dan berfokus sebagai seorang Back-End Developer',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 10),
-
-                // Bagian History
+                // Skills section (optional)
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Card(
@@ -139,7 +121,7 @@ class Page2 extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Skill',
+                            'Tech Stack',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -147,12 +129,53 @@ class Page2 extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 10),
-                          Text(
-                            'Sebagai seorang Back-End Developer, saya memiliki skill di bahasa pemograman Laravel, ExpressJS dan untuk mengembangkan website yang utuh, saya juga menggunakan bahasa pemograman TailwindCSS untuk styling websitenya',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
+                          // Example skill items
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                children: [
+                                  Image.asset(
+                                    'images/Laravel.png', // Replace with the path to Laravel image
+                                    width: 50,
+                                    height: 50,
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    'Laravel',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Image.asset(
+                                    'images/js.png', // Replace with the path to JavaScript image
+                                    width: 50,
+                                    height: 50,
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    'JavaScript',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Image.asset(
+                                    'images/tailwindcss.png', // Replace with the path to Tailwind CSS image
+                                    width: 50,
+                                    height: 50,
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    'TailwindCSS',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ],
                       ),
