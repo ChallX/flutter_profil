@@ -1,31 +1,19 @@
 import 'package:flutter/material.dart';
 
 class Page2 extends StatelessWidget {
-  // Add parameters to the constructor
-  final String name;
-  final String role;
-  final String school;
-  final String description;
-
-  // Constructor with required parameters
-  const Page2({
-    Key? key,
-    required this.name,
-    required this.role,
-    required this.school,
-    required this.description,
-  }) : super(key: key);
+  const Page2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Membuat AppBar transparan
       appBar: AppBar(
-        elevation: 0, // Remove shadow from AppBar
-        backgroundColor: Colors.transparent, // Make AppBar transparent
+        elevation: 0, // Menghilangkan bayangan pada AppBar
+        backgroundColor: Colors.transparent, // Membuat AppBar transparan
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black), // Back button icon color
+          icon: Icon(Icons.arrow_back, color: Colors.black), // Warna ikon kembali
           onPressed: () {
-            Navigator.of(context).pop(); // Go back to the previous page
+            Navigator.of(context).pop(); // Kembali ke halaman sebelumnya
           },
         ),
       ),
@@ -38,28 +26,29 @@ class Page2 extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("images/background.jpg"), // Background image path
-                fit: BoxFit.cover, // Fit image to cover
+                image: AssetImage(
+                    "images/background.jpg"), // Ganti dengan path gambar Anda
+                fit: BoxFit.cover, // Agar gambar sesuai dengan ukuran layar
               ),
             ),
           ),
 
-          // Content over the background
+          // Konten di atas background
           SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Space for the CircleAvatar
-                SizedBox(height: 80),
+                // Spacer untuk menurunkan CircleAvatar
+                SizedBox(height: 80), // Atur sesuai dengan kebutuhan
 
-                // Profile picture
+                // Bagian gambar profil dan nama pengguna
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: AssetImage('images/me.jpg'), // Profile picture path
+                  backgroundImage: AssetImage('images/me.jpg'),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  name, // Display the name passed from the previous page
+                  'Louis Marchall Joheart Cardoso',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -68,7 +57,7 @@ class Page2 extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
 
-                // About section
+                // Bagian About
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Card(
@@ -92,7 +81,7 @@ class Page2 extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            'Role: $role\nSekolah: $school\nDeskripsi: $description', // Display role, school, and description
+                            'Perkenalkan nama saya Louis Marchall Joheart Cardoso, seorang Back-End Developer yang sedang berkembang. Saat ini saya sedang menempuh pendidikan di SMK Wikrama Bogor',
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.white,
@@ -106,7 +95,41 @@ class Page2 extends StatelessWidget {
 
                 SizedBox(height: 10),
 
-                // Skills section (optional)
+                // Bagian History
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Card(
+                    color: Colors.white,
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'History',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Saya menempuh pendidikan dasar di SD Mardi Waluya Cibinong. Setelah itu, saya melanjutkan ke SMP Mardi Waluya Cibinong dan masih menempuh pendidikan di SMK Wikrama Bogor. Di Wikrama, saya mengambil jurusan PPLG dan berfokus sebagai seorang Back-End Developer',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 10),
+
+                // Bagian Skill
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Card(
@@ -129,14 +152,15 @@ class Page2 extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 10),
-                          // Example skill items
+                          
+                          // Gambar dan nama tech stack dalam Row
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Column(
                                 children: [
                                   Image.asset(
-                                    'images/Laravel.png', // Replace with the path to Laravel image
+                                    'images/Laravel.png', // Ganti dengan path gambar Laravel
                                     width: 50,
                                     height: 50,
                                   ),
@@ -150,7 +174,7 @@ class Page2 extends StatelessWidget {
                               Column(
                                 children: [
                                   Image.asset(
-                                    'images/js.png', // Replace with the path to JavaScript image
+                                    'images/js.png', // Ganti dengan path gambar Laravel
                                     width: 50,
                                     height: 50,
                                   ),
@@ -164,7 +188,7 @@ class Page2 extends StatelessWidget {
                               Column(
                                 children: [
                                   Image.asset(
-                                    'images/tailwindcss.png', // Replace with the path to Tailwind CSS image
+                                    'images/tailwindcss.png', // Ganti dengan path gambar TailwindCSS
                                     width: 50,
                                     height: 50,
                                   ),

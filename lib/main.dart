@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'page2.dart'; // Pastikan AfterLogin sudah ada di sini
+import 'afterlogin.dart'; // Pastikan AfterLogin sudah ada di sini
 
 void main() {
   runApp(const MyApp());
@@ -158,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Page2(
+                            builder: (context) => Home(
                               name: name,
                               role: role,
                               school: school,
